@@ -126,8 +126,7 @@ class CustomProgressBar extends StatelessWidget {
                     FractionallySizedBox(
                       alignment: Alignment.centerLeft,
                       widthFactor: progress,
-                      child: _progressSegment(
-                          mainColor1, mainColor2, height,
+                      child: _progressSegment(mainColor1, mainColor2, height,
                           leftRadius: const Radius.circular(20),
                           rightRadius: Radius.circular(
                             plusProgress != null ? 0 : 20,
@@ -203,6 +202,10 @@ class CustomProgressBar extends StatelessWidget {
   _textInBar() {
     return SizedBox(
         height: height,
-        child: Center(child: _labelCommonWidget(textInBar!)));
+        child: Center(
+          child: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: _labelCommonWidget(textInBar!)),
+        ));
   }
 }
