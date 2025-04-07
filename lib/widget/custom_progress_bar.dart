@@ -8,12 +8,12 @@ enum TitleStyle {
 const double defaultHeight = 32;
 
 const Color mainColor2 = Color(0xFF9A8EFF);
-const Color mainColor1 = Color(0xFFB7B2FF);
+const Color mainColor1 = Color.fromARGB(255, 35, 34, 45);
 
 const Color plusColor2 = Color(0xFFFD9495);
 const Color plusColor1 = Color(0xFFFED2BB);
 
-class CustomProgressBar extends StatefulWidget {
+class CustomProgressBar extends StatelessWidget {
   final double progress;
   final double height;
   final TitleStyle titleStyle;
@@ -37,30 +37,25 @@ class CustomProgressBar extends StatefulWidget {
           'Progress must be between 0 and 1 and if plusProgress is not null, the sum of progress and plusProgress must be less than or equal to 1',
         );
 
-  @override
-  State<CustomProgressBar> createState() => _CustomProgressBarState();
-}
-
-class _CustomProgressBarState extends State<CustomProgressBar> {
   double get _fullPlusProgress {
-    if (widget.plusProgress != null) {
-      return widget.progress + widget.plusProgress!;
+    if (plusProgress != null) {
+      return progress + plusProgress!;
     }
-    return widget.progress;
+    return progress;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.title == null) {
+    if (title == null) {
       return _progressBar();
     }
 
-    switch (widget.titleStyle) {
+    switch (titleStyle) {
       case TitleStyle.onTop:
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _labelCommonWidget(widget.title!),
+            _labelCommonWidget(title!),
             const SizedBox(height: 8),
             _progressBar(),
           ],
@@ -68,7 +63,7 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
       default:
         return Row(
           children: [
-            _labelCommonWidget(widget.title!),
+            _labelCommonWidget(title!),
             const SizedBox(width: 8),
             Expanded(child: _progressBar()),
           ],
@@ -107,7 +102,7 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
                   clipBehavior: Clip.hardEdge,
                   children: [
                     Container(
-                      height: widget.height - 4.5,
+                      height: height - 4.5,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.grey[100],
@@ -116,32 +111,31 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
                         ),
                       ),
                     ),
-                    if (widget.plusProgress != null)
+                    if (plusProgress != null)
                       FractionallySizedBox(
                         alignment: Alignment.centerLeft,
                         widthFactor: _fullPlusProgress,
                         child: _progressSegment(
                           plusColor1,
                           plusColor2,
-                          widget.height,
+                          height,
                           leftRadius: const Radius.circular(20),
                           rightRadius: const Radius.circular(20),
                         ),
                       ),
                     FractionallySizedBox(
                       alignment: Alignment.centerLeft,
-                      widthFactor: widget.progress,
-                      child: _progressSegment(
-                          mainColor1, mainColor2, widget.height,
+                      widthFactor: progress,
+                      child: _progressSegment(mainColor1, mainColor2, height,
                           leftRadius: const Radius.circular(20),
                           rightRadius: Radius.circular(
-                            widget.plusProgress != null ? 0 : 20,
+                            plusProgress != null ? 0 : 20,
                           )),
                     ),
                   ],
                 ),
               ),
-              if (widget.textInBar != null) _textInBar(),
+              if (textInBar != null) _textInBar(),
             ],
           ),
         ),
@@ -158,14 +152,14 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
           width: 8,
         ),
         _labelCommonWidget(
-          '${(widget.progress * 100).toStringAsFixed(0)}%',
+          '${(progress * 100).toStringAsFixed(0)}%',
         ),
         const SizedBox(
           width: 8,
         ),
-        if (widget.plusProgress != null)
+        if (plusProgress != null)
           _labelCommonWidget(
-            '+ ${(widget.plusProgress! * 100).toStringAsFixed(0)}%',
+            '+ ${(plusProgress! * 100).toStringAsFixed(0)}%',
             textColor: plusColor1,
           ),
       ],
@@ -207,7 +201,6 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
 
   _textInBar() {
     return SizedBox(
-        height: widget.height,
-        child: Center(child: _labelCommonWidget(widget.textInBar!)));
+        height: height, child: Center(child: _labelCommonWidget(textInBar!)));
   }
 }

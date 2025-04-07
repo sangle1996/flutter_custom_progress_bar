@@ -11,16 +11,49 @@ A customizable linear progress bar for Flutter.
 - Text label inside or outside the bar
 - Optional inner box shadow
 
-## Usage
+## 🚀 Basic Usage
 
 ```dart
-CustomLinearProgressBar(
-  value: 0.8,
-  extraValue: 0.12,
-  label: 'Text In Bar',
-  gradient: LinearGradient(
-    colors: [Colors.purpleAccent, Colors.deepPurple],
-  ),
-  extraValueColor: Colors.orangeAccent,
-  showShadowInside: true,
+CustomProgressBar(
+  progress: 0.6,
+  title: 'Progress',
 )
+```
+
+---
+
+## ➕ With Additional Progress
+
+```dart
+CustomProgressBar(
+  progress: 0.6,
+  plusProgress: 0.2,
+  title: 'Progress',
+)
+```
+
+---
+
+## 📝 With Text Inside the Bar
+
+```dart
+CustomProgressBar(
+  progress: 0.8,
+  textInBar: '80%',
+  title: 'Progress',
+)
+```
+
+---
+
+## 🧭 Change Title Position
+
+```dart
+CustomProgressBar(
+  progress: 0.7,
+  title: 'Progress',
+  titleStyle: TitleStyle.onTop, // or onLeft, inBar
+)
+```
+
+---
