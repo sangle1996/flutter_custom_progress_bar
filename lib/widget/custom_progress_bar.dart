@@ -8,7 +8,7 @@ enum TitleStyle {
 const double defaultHeight = 32;
 
 const Color mainColor2 = Color(0xFF9A8EFF);
-const Color mainColor1 = Color.fromARGB(255, 35, 34, 45);
+const Color mainColor1 = Color(0xFFB7B2FF);
 
 const Color plusColor2 = Color(0xFFFD9495);
 const Color plusColor1 = Color(0xFFFED2BB);
@@ -126,7 +126,8 @@ class CustomProgressBar extends StatelessWidget {
                     FractionallySizedBox(
                       alignment: Alignment.centerLeft,
                       widthFactor: progress,
-                      child: _progressSegment(mainColor1, mainColor2, height,
+                      child: _progressSegment(
+                          mainColor1, mainColor2, height,
                           leftRadius: const Radius.circular(20),
                           rightRadius: Radius.circular(
                             plusProgress != null ? 0 : 20,
@@ -201,6 +202,7 @@ class CustomProgressBar extends StatelessWidget {
 
   _textInBar() {
     return SizedBox(
-        height: height, child: Center(child: _labelCommonWidget(textInBar!)));
+        height: height,
+        child: Center(child: _labelCommonWidget(textInBar!)));
   }
 }
