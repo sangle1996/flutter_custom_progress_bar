@@ -1,16 +1,27 @@
-# linear_progress_demo
+# Flutter Custom Linear Progress Bar
 
-A new Flutter project.
+A customizable and animated linear progress bar for Flutter.
 
-## Getting Started
+<img width="415" alt="image" src="https://github.com/user-attachments/assets/51b05ccc-e8ef-441b-ae5d-cac764b9b92d" />
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Smooth animation from 0 to value
+- Support for extra stacked progress
+- Text label inside or outside the bar
+- Custom colors, gradients, radius
+- Optional inner box shadow
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+CustomLinearProgressBar(
+  value: 0.8,
+  extraValue: 0.12,
+  label: 'Text In Bar',
+  gradient: LinearGradient(
+    colors: [Colors.purpleAccent, Colors.deepPurple],
+  ),
+  extraValueColor: Colors.orangeAccent,
+  showShadowInside: true,
+)
