@@ -1,6 +1,6 @@
 # Flutter Custom Linear Progress Bar
 
-# Run able on: Flutter (Channel stable, 3.7.8, on macOS 15.3.2 24D81 darwin-arm64, locale en-VN)
+# Run able on: Flutter Channel stable, 3.7.8
 
 A customizable linear progress bar for Flutter.
 
